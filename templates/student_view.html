@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <title>Student Information</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'student_info:student_info' %}">Insert Student Information</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href='{% url 'student_info:student_list' %}'>List Page</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+ <br><br>
+  <div class="container">
+    <div class="card" style="width: 70rem;">
+      <div class="card-body">
+        <h1>Student List</h1>
+
+        <div class = "container">
+         <table border="1" >
+            <tr>
+                <th> Name</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Father Name</th>
+                <th>Mother Name</th>
+                <th>Last Education</th>
+            </tr>
+           {% for student_list in student %}
+                <tr>
+                    <td>
+                        <a href="{% url 'student_info:details' pk=student_list.pk %}">{{ student_list.name  }}</a>
+                    </td>
+                    <td>{{ student_list.age }}</td>
+                    <td>{{ student_list.Sex }}</td>
+                    <td>{{ student_list.fatherName }}</td>
+                    <td>{{ student_list.motherName }}</td>
+                    <td>{{ student_list.lastEducation }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+        </div>
+      <br>
+        <div class="container">
+            <a href="{% url 'student_info:student_info' %}"><h6>Enter Student Information  Here</h6></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
